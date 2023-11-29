@@ -39,3 +39,25 @@ func MultipleReturnValue() {
 	_, c := values()
 	fmt.Println(c)
 }
+
+// -*-
+func sum(nums ...int) {
+	fmt.Print(nums, " ")
+	total := 0
+	for _, num := range nums {
+		total += num
+	}
+	fmt.Println(" ===> total =", total)
+}
+
+// -*- Variadics -*-
+func Variadics() {
+	fmt.Println()
+	fmt.Println("-*---------------------*-")
+	fmt.Println("-*- Variadic function -*-")
+	fmt.Println("-*---------------------*-")
+	sum(1, 2)
+	sum(1, 2, 3)
+	nums := []int{1, 2, 3, 4}
+	sum(nums...)
+}
