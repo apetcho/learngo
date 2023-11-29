@@ -2,7 +2,8 @@ package main
 
 import (
 	//"learngo/learngo/basics"
-	"learngo/learngo/containers"
+	//"learngo/learngo/containers"
+	"learngo/learngo/functions"
 )
 
 func main() {
@@ -14,8 +15,10 @@ func main() {
 	// basics.IfElse()
 	// basics.Switch()
 
-	containers.Arrays()
-	containers.Slices()
-	containers.AssocArray()
-	containers.RangeIterator()
+	// containers.Arrays()
+	// containers.Slices()
+	// containers.AssocArray()
+	// containers.RangeIterator()
+
+	functions.Functions()
 }
