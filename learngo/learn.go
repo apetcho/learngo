@@ -3,7 +3,8 @@ package main
 import (
 	//"learngo/learngo/basics"
 	//"learngo/learngo/containers"
-	"learngo/learngo/functions"
+	//"learngo/learngo/functions"
+	"learngo/learngo/level2"
 )
 
 func main() {
@@ -20,9 +21,11 @@ func main() {
 	// containers.AssocArray()
 	// containers.RangeIterator()
 
-	functions.Functions()
-	functions.MultipleReturnValue()
-	functions.Variadics()
-	functions.Closures()
-	functions.Recursion()
+	// functions.Functions()
+	// functions.MultipleReturnValue()
+	// functions.Variadics()
+	// functions.Closures()
+	// functions.Recursion()
+
+	level2.Pointers()
 }
