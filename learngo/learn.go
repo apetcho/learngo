@@ -21,4 +21,5 @@ func main() {
 	// containers.RangeIterator()
 
 	functions.Functions()
+	functions.MultipleReturnValue()
 }
