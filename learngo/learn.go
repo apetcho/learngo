@@ -9,4 +9,5 @@ func main() {
 	basics.Values()
 	basics.Variables()
 	basics.Constant()
+	basics.For()
 }
