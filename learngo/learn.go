@@ -24,4 +24,5 @@ func main() {
 	functions.MultipleReturnValue()
 	functions.Variadics()
 	functions.Closures()
+	functions.Recursion()
 }
