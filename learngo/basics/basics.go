@@ -1,12 +1,15 @@
 package basics
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
 func Hello() {
 	fmt.Println("Hello World!")
 }
 
-func Values(){
+func Values() {
 	fmt.Println("go" + "lang")
 	fmt.Println("1+1 =", 1+1)
 	fmt.Println("7.0/3.0 =", 7.0/3.0)
@@ -15,7 +18,7 @@ func Values(){
 	fmt.Println(!true)
 }
 
-func Variables(){
+func Variables() {
 	var a = "initial"
 	fmt.Println(a)
 
@@ -30,4 +33,16 @@ func Variables(){
 
 	f := "apple"
 	fmt.Println(f)
+}
+
+// -
+const str string = "constant"
+
+func Constant() {
+	fmt.Println(str)
+	const num = 50000000
+	const dec = 3e20 / num
+	fmt.Println(dec)
+	fmt.Println(int64(dec))
+	fmt.Println(math.Sin(num))
 }

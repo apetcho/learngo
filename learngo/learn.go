@@ -8,4 +8,5 @@ func main() {
 	basics.Hello()
 	basics.Values()
 	basics.Variables()
+	basics.Constant()
 }
