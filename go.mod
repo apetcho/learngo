@@ -1,3 +1,3 @@
-module learngo/main
+module learngo
 
 go 1.21.4
