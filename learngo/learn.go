@@ -15,4 +15,5 @@ func main() {
 	// basics.Switch()
 
 	containers.Arrays()
+	containers.Slices()
 }
