@@ -61,3 +61,27 @@ func Variadics() {
 	nums := []int{1, 2, 3, 4}
 	sum(nums...)
 }
+
+// -*- Closures -*-
+func intSeq() func() int {
+	i := 0
+	return func() int {
+		i++
+		return i
+	}
+}
+
+func Closures() {
+	fmt.Println()
+	fmt.Println("-*------------*-")
+	fmt.Println("-*- Closures -*-")
+	fmt.Println("-*------------*-")
+	nextInt := intSeq()
+
+	fmt.Println(nextInt())
+	fmt.Println(nextInt())
+	fmt.Println(nextInt())
+
+	newInts := intSeq()
+	fmt.Println(newInts())
+}

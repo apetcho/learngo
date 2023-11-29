@@ -23,4 +23,5 @@ func main() {
 	functions.Functions()
 	functions.MultipleReturnValue()
 	functions.Variadics()
+	functions.Closures()
 }
