@@ -145,19 +145,19 @@ type geometry interface {
 	perim() float64
 }
 
-type rectangle struct{
+type rectangle struct {
 	width, height float64
 }
 
-type circle struct{
+type circle struct {
 	radius float64
 }
 
-func (r rectangle) area() float64{
-	return r.width*r.height
+func (r rectangle) area() float64 {
+	return r.width * r.height
 }
 
-func (r rectangle) perim() float64{
+func (r rectangle) perim() float64 {
 	return 2*r.width + 2*r.height
 }
 
@@ -165,17 +165,17 @@ func (c circle) area() float64 {
 	return math.Pi * c.radius * c.radius
 }
 
-func (c circle) perim() float64{
+func (c circle) perim() float64 {
 	return 2 * math.Pi * c.radius
 }
 
-func measure(geom geometry){
+func measure(geom geometry) {
 	fmt.Println(geom)
 	fmt.Println(geom.area())
 	fmt.Println(geom.perim())
 }
 
-func Interfaces(){
+func Interfaces() {
 	fmt.Println()
 	fmt.Println("-*--------------*-")
 	fmt.Println("-*- Interfaces -*-")
@@ -185,4 +185,43 @@ func Interfaces(){
 	circ := circle{radius: 5}
 	measure(rect)
 	measure(circ)
+}
+
+// -*-------------------*-
+// -*- StructEmbedding -*-
+// -*-------------------*-
+type base struct {
+	num int
+}
+
+func (b base) describe() string {
+	return fmt.Sprintf("base with num=%v", b.num)
+}
+
+type container struct {
+	base
+	str string
+}
+
+func StructEmbedding() {
+	fmt.Println()
+	fmt.Println("-*--------------------*-")
+	fmt.Println("-*- Struct embedding -*-")
+	fmt.Println("-*--------------------*-")
+	co := container{
+		base: base{
+			num: 1,
+		},
+		str: "some name",
+	}
+	fmt.Printf("co={num: %v, str: %v}\n", co.num, co.str)
+	fmt.Println("also num:", co.base.num)
+	fmt.Println("describe:", co.describe())
+
+	type describer interface {
+		describe() string
+	}
+
+	var d describer = co
+	fmt.Println("describer:", d.describe())
 }

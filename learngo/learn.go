@@ -32,4 +32,5 @@ func main() {
 	level2.Structs()
 	level2.Methods()
 	level2.Interfaces()
+	level2.StructEmbedding()
 }
