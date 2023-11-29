@@ -63,3 +63,46 @@ func examineRune(r rune) {
 		fmt.Println("found so sua")
 	}
 }
+
+// -*-----------*-
+// -*- Structs -*-
+// -*-----------*-
+type person struct {
+	name string
+	age  int
+}
+
+func newPerson(name string) *person {
+	p := person{name: name}
+	p.age = 42
+	return &p
+}
+
+func Structs() {
+	fmt.Println()
+	fmt.Println("-*----------*-")
+	fmt.Println("-*- Struct -*-")
+	fmt.Println("-*----------*-")
+	fmt.Println(person{"Bob", 20})
+	fmt.Println(person{name: "Alice", age: 30})
+	fmt.Println(person{name: "Fred"})
+	fmt.Println(&person{name: "Ann", age: 40})
+	fmt.Println(newPerson("John"))
+
+	sean := person{name: "Sean", age: 50}
+	fmt.Println(sean.name)
+	seanp := &sean
+	fmt.Println(seanp.age)
+	seanp.age = 51
+	fmt.Println(seanp.age)
+
+	// -
+	dog := struct {
+		name   string
+		isGood bool
+	}{
+		"Rex",
+		true,
+	}
+	fmt.Println(dog)
+}
