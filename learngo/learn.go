@@ -34,4 +34,5 @@ func main() {
 	level2.Interfaces()
 	level2.StructEmbedding()
 	level2.Generics()
+	level2.ErrorHandling()
 }
