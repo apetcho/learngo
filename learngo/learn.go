@@ -7,4 +7,5 @@ import (
 func main() {
 	basics.Hello()
 	basics.Values()
+	basics.Variables()
 }
