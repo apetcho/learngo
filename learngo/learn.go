@@ -28,4 +28,5 @@ func main() {
 	// functions.Recursion()
 
 	level2.Pointers()
+	level2.StringAndRune()
 }
