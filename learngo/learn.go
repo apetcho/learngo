@@ -10,4 +10,5 @@ func main() {
 	basics.Variables()
 	basics.Constant()
 	basics.For()
+	basics.IfElse()
 }
