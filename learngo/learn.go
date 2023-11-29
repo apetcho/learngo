@@ -31,4 +31,5 @@ func main() {
 	level2.StringAndRune()
 	level2.Structs()
 	level2.Methods()
+	level2.Interfaces()
 }
