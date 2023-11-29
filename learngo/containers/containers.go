@@ -2,6 +2,7 @@ package containers
 
 import (
 	"fmt"
+	"maps"
 	"slices"
 )
 
@@ -82,4 +83,41 @@ func Slices() {
 		}
 	}
 	fmt.Println("2d: ", twoD)
+}
+
+// -*- AssocArray (aka Map)
+func AssocArray() {
+	fmt.Println("-*-------------------------------*-")
+	fmt.Println("-*- Associative array, i.e maps -*-")
+	fmt.Println("-*-------------------------------*-")
+	dict := make(map[string]int)
+	dict["k1"] = 7
+	dict["k2"] = 13
+
+	fmt.Println("dict:", dict)
+
+	val1 := dict["k1"]
+	fmt.Println("val1:", val1)
+
+	val3 := dict["k3"]
+	fmt.Println("val3:", val3)
+
+	fmt.Println("len:", len(dict))
+
+	delete(dict, "k2")
+	fmt.Println("dict:", dict)
+
+	clear(dict)
+	fmt.Println("dict:", dict)
+
+	_, prs := dict["k2"]
+	fmt.Println("prs:", prs)
+
+	kv1 := map[string]int{"foo": 1, "bar": 2}
+	fmt.Println("dict:", kv1)
+
+	kv2 := map[string]int{"foo": 1, "bar": 2}
+	if maps.Equal(kv1, kv2) {
+		fmt.Println("kv1 == kv2")
+	}
 }

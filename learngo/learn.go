@@ -16,4 +16,5 @@ func main() {
 
 	containers.Arrays()
 	containers.Slices()
+	containers.AssocArray()
 }
