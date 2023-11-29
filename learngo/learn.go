@@ -30,4 +30,5 @@ func main() {
 	level2.Pointers()
 	level2.StringAndRune()
 	level2.Structs()
+	level2.Methods()
 }
