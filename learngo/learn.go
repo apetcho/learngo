@@ -17,4 +17,5 @@ func main() {
 	containers.Arrays()
 	containers.Slices()
 	containers.AssocArray()
+	containers.RangeIterator()
 }

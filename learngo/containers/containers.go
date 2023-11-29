@@ -121,3 +121,36 @@ func AssocArray() {
 		fmt.Println("kv1 == kv2")
 	}
 }
+
+// -*- Range iterator -*-
+func RangeIterator() {
+	fmt.Println("-*------------------*-")
+	fmt.Println("-*- Range Iterator -*-")
+	fmt.Println("-*------------------*-")
+
+	nums := []int{2, 3, 4}
+	sum := 0
+	for _, num := range nums {
+		sum += num
+	}
+	fmt.Println("sum:", sum)
+
+	for i, num := range nums {
+		if num == 3 {
+			fmt.Println("index:", i)
+		}
+	}
+
+	kvs := map[string]string{"a": "apple", "b": "banana"}
+	for k, v := range kvs {
+		fmt.Printf("%s -> %s\n", k, v)
+	}
+
+	for key := range kvs {
+		fmt.Println("key:", key)
+	}
+
+	for i, c := range "go" {
+		fmt.Println(i, c)
+	}
+}
