@@ -225,3 +225,62 @@ func StructEmbedding() {
 	var d describer = co
 	fmt.Println("describer:", d.describe())
 }
+
+// -*------------*-
+// -*- Generics -*-
+// -*------------*-
+func MapKeys[K comparable, V any](dict map[K]V) []K {
+	result := make([]K, 0, len(dict))
+	for k := range dict {
+		result = append(result, k)
+	}
+	return result
+}
+
+// -
+type List[T any] struct {
+	head, tail *element[T]
+}
+
+// -
+type element[T any] struct {
+	next *element[T]
+	val  T
+}
+
+// -
+func (lst *List[T]) Push(val T) {
+	if lst.tail == nil {
+		lst.head = &element[T]{val: val}
+		lst.tail = lst.head
+	} else {
+		lst.tail.next = &element[T]{val: val}
+		lst.tail = lst.tail.next
+	}
+}
+
+// -
+func (lst *List[T]) GetAll() []T {
+	var result []T
+	for elem := lst.head; elem != nil; elem = elem.next {
+		result = append(result, elem.val)
+	}
+	return result
+}
+
+// -*-
+func Generics() {
+	fmt.Println()
+	fmt.Println("-*------------*-")
+	fmt.Println("-*- Generics -*-")
+	fmt.Println("-*------------*-")
+	var dict = map[int]string{1: "2", 2: "4", 4: "8"}
+	fmt.Println("keys:", MapKeys(dict))
+
+	_ = MapKeys[int, string](dict)
+	lst := List[int]{}
+	lst.Push(10)
+	lst.Push(13)
+	lst.Push(23)
+	fmt.Println("list:", lst.GetAll())
+}
