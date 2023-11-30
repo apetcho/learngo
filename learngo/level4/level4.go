@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"cmp"
 	"encoding/json"
+	"encoding/xml"
 	"fmt"
 	"os"
 	"regexp"
@@ -343,4 +344,48 @@ func GoJson() {
 		d := map[string]int{"apple": 5, "lettuce": 7}
 		enc.Encode(d)
 	}()
+}
+
+// -*--------------*-
+// -*- (11) GoXml -*-
+// -*--------------*-
+type Plant struct {
+	XMLName xml.Name `xml:"plant"`
+	Id      int      `xml:"id,attr"`
+	Name    string   `xml:"name"`
+	Origin  []string `xml:"origin"`
+}
+
+func (p Plant) String() string {
+	return fmt.Sprintf(
+		"Plant id=%v, name=%v, origin=%v", p.Id, p.Name, p.Origin,
+	)
+}
+
+func GoXml() {
+	header("(11) XML")
+	coffee := &Plant{Id: 27, Name: "Coffee"}
+	coffee.Origin = []string{"Ethiopia", "Brazil"}
+	out, _ := xml.MarshalIndent(coffee, " ", "  ")
+	println(string(out))
+	println(xml.Header + string(out))
+
+	var plant Plant
+	if err := xml.Unmarshal(out, &plant); err != nil {
+		panic(err)
+	}
+	println(plant)
+
+	tomato := &Plant{Id: 81, Name: "Tomato"}
+	tomato.Origin = []string{"Mexico", "California"}
+
+	type Nesting struct {
+		XMLName xml.Name `xml:"nesting"`
+		Plants  []*Plant `xml:"parent>child>plant"`
+	}
+
+	nesting := &Nesting{}
+	nesting.Plants = []*Plant{coffee, tomato}
+	out, _ = xml.MarshalIndent(nesting, " ", "  ")
+	println(string(out))
 }
