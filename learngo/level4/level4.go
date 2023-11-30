@@ -1,9 +1,11 @@
 package level4
 
 import (
+	"bytes"
 	"cmp"
 	"fmt"
 	"os"
+	"regexp"
 	"slices"
 	"text/template"
 
@@ -243,4 +245,30 @@ func TextTemplates() {
 
 	t4 := create("t4", "Range: {{range .}}{{.}} {{end}}\n")
 	t4.Execute(os.Stdout, []string{"Go", "Rust", "C++", "C#", "C", "Python"})
+}
+
+// -*---------------------------*-
+// -*- (09) RegularExpressions -*-
+// -*---------------------------*-
+func RegularExpressions() {
+	header("(09) Regular expressions")
+	match, _ := regexp.MatchString("p([a-z]+)ch", "peach")
+	println(match)
+
+	re, _ := regexp.Compile("p([a-z]+)ch")
+	println(re.MatchString("peach"))
+	println(re.FindString("peach punch"))
+	println("idx:", re.FindString("peach punch"))
+	println(re.FindStringSubmatch("peach punch"))
+	println(re.FindAllStringSubmatchIndex("peach punch pinch", -1))
+	println("all:", re.FindAllString("peach punch pinch", -1))
+	println(re.FindAllString("peach punch pinch", 2))
+	println(re.Match([]byte("peach")))
+
+	re = regexp.MustCompile("p([a-z]+)ch")
+	println("regexp:", re)
+	println(re.ReplaceAllString("a peach", "<fruit>"))
+	in := []byte("a peach")
+	out := re.ReplaceAllFunc(in, bytes.ToUpper)
+	println(string(out))
 }

@@ -66,4 +66,5 @@ func main() {
 	level4.StringFunctions()
 	level4.StringFormatting()
 	level4.TextTemplates()
+	level4.RegularExpressions()
 }
