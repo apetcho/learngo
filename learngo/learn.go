@@ -63,4 +63,5 @@ func main() {
 	//level4.Panics()
 	level4.GoDefer()
 	level4.Recover()
+	level4.StringFunctions()
 }

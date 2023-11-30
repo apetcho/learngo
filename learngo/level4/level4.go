@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"os"
 	"slices"
+
+	str "strings"
 )
 
 // -*----------------*-
@@ -136,4 +138,39 @@ func Recover() {
 
 	mayPanic()
 	fmt.Println("After mayPanic()")
+}
+
+// -*------------------------*-
+// -*- (06) StringFunctions -*-
+// -*------------------------*-
+var println = fmt.Println
+
+func StringFunctions() {
+	// fmt.Println()
+	// fmt.Println("-*--------------*-")
+	// fmt.Println("-*- (06) Defer -*-")
+	// fmt.Println("-*--------------*-")
+	header("(06) StringFunctions")
+	println("Contains:  ", str.Contains("test", "es"))
+	println("Count:     ", str.Count("test", "t"))
+	println("HasPrefix: ", str.HasPrefix("test", "te"))
+	println("HasSuffix: ", str.HasSuffix("test", "st"))
+	println("Index:     ", str.Index("test", "e"))
+	println("Join:      ", str.Join([]string{"a", "b", "c"}, "-"))
+	println("Repeat:    ", str.Repeat("a", 5))
+	println("Replace:   ", str.Replace("foo", "o", "0", -1))
+	println("Repleace:  ", str.Replace("foo", "o", "0", 1))
+	println("Split:     ", str.Split("a-b-c-d-e", "-"))
+	println("ToLower:   ", str.ToLower("TEST"))
+	println("ToUpper:   ", str.ToUpper("test"))
+}
+
+// -*- header(text) -*-
+func header(text string) {
+	num := len(text) + 2
+	line := str.Join([]string{"-*--", str.Repeat("-", num), "--*-"}, "")
+	fmt.Println()
+	fmt.Println(line)
+	fmt.Println("-*- ", text, " -*-")
+	fmt.Println(line)
 }
