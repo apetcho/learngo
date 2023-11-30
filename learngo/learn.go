@@ -69,4 +69,5 @@ func main() {
 	level4.RegularExpressions()
 	level4.GoJson()
 	level4.GoXml()
+	level4.GoTime()
 }

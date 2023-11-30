@@ -10,6 +10,7 @@ import (
 	"regexp"
 	"slices"
 	"text/template"
+	"time"
 
 	str "strings"
 )
@@ -388,4 +389,38 @@ func GoXml() {
 	nesting.Plants = []*Plant{coffee, tomato}
 	out, _ = xml.MarshalIndent(nesting, " ", "  ")
 	println(string(out))
+}
+
+// -*---------------*-
+// -*- (12) GoTime -*-
+// -*---------------*-
+func GoTime() {
+	header("(12) Time")
+
+	now := time.Now()
+	println(now)
+	then := time.Date(
+		2009, 11, 17, 20, 34, 58, 651387237, time.UTC,
+	)
+	println(then)
+	println(then.Year())
+	println(then.Month())
+	println(then.Day())
+	println(then.Hour())
+	println(then.Minute())
+	println(then.Second())
+	println(then.Nanosecond())
+	println(then.Location())
+	println(then.Weekday())
+	println(then.Before(now))
+	println(then.After(now))
+	println(then.Equal(now))
+
+	diff := now.Sub(then)
+	println(diff.Hours())
+	println(diff.Minutes())
+	println(diff.Seconds())
+	println(diff.Nanoseconds())
+	println(then.Add(diff))
+	println(then.Add(-diff))
 }
