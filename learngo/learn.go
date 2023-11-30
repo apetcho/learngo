@@ -52,4 +52,5 @@ func main() {
 	level3.Tickers()
 	level3.WorkerPools()
 	level3.WaitGroups()
+	level3.RateLimiting()
 }
