@@ -19,6 +19,7 @@ import (
 	"os/exec"
 	"path/filepath"
 	str "strings"
+	"syscall"
 	"time"
 )
 
@@ -582,4 +583,21 @@ func SpawningProcesses() {
 	}
 	println("> ls -a -l -h")
 	println(string(lsOut))
+}
+
+// -*---------------------------*-
+// -*- (21) ExecutingProcesses -*-
+// -*---------------------------*-
+func ExecutingProcesses(){
+	header("(21) Exec'ing Processes")
+	binary, lookErr := exec.LookPath("ls")
+	if lookErr != nil {
+		panic(lookErr)
+	}
+	args := []string{"ls", "-a", "-l", "-h"}
+	env := os.Environ()
+	execErr := syscall.Exec(binary, args, env)
+	if execErr != nil {
+		panic(execErr)
+	}
 }
