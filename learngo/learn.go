@@ -49,4 +49,5 @@ func main() {
 	level3.ClosingChannels()
 	level3.ChannelIterator()
 	level3.Timers()
+	level3.Tickers()
 }
