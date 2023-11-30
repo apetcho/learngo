@@ -236,3 +236,21 @@ func ClosingChannels() {
 	fmt.Println("sent all jobs")
 	<-done
 }
+
+// -*-------------------*-
+// -*- ChannelIterator -*-
+// -*-------------------*-
+func ChannelIterator(){
+	fmt.Println()
+	fmt.Println("-*-----------------------*-")
+	fmt.Println("-*- Range over channels -*-")
+	fmt.Println("-*-----------------------*-")
+
+	queue := make(chan string, 2)
+	queue <- "one"
+	queue <- "two"
+	close(queue)
+	for elem := range queue {
+		fmt.Println(elem)
+	}
+}
