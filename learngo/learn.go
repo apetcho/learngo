@@ -48,4 +48,5 @@ func main() {
 	level3.NonBlockingChannel()
 	level3.ClosingChannels()
 	level3.ChannelIterator()
+	level3.Timers()
 }
