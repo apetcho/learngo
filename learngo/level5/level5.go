@@ -350,3 +350,18 @@ func EmbedDirective() {
 	content2, _ := folder.ReadFile("folder/file2.hash")
 	print(string(content2))
 }
+
+// -*------------------------*-
+// -*- (12) CommandLineArgs -*-
+// -*------------------------*-
+func CommandLineArgs() {
+	header("(12) Command-Line Args")
+
+	argsWithProg := os.Args
+	argsWithoutProg := os.Args[1:]
+
+	arg := os.Args[3]
+	println(argsWithProg)
+	println(argsWithoutProg)
+	println(arg)
+}
