@@ -84,4 +84,5 @@ func main() {
 	//level5.LineFilters()
 	level5.FilePaths()
 	level5.GoDirectories()
+	level5.TemporaryFilesAndDirectories()
 }

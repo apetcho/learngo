@@ -289,3 +289,36 @@ func GoDirectories() {
 	println("Visiting subdir")
 	_ = filepath.WalkDir("subdir", visit)
 }
+
+// -*-------------------------------------*-
+// -*- (09) TemporaryFilesAndDirectories -*-
+// -*-------------------------------------*-
+func TemporaryFilesAndDirectories() {
+	header("(09) Temporary Files and Directories")
+
+	check := func(err error) {
+		if err != nil {
+			panic(err)
+		}
+	}
+
+	// -
+	fp, err := os.CreateTemp("", "sample")
+	check(err)
+	println("Temp file name:", fp.Name())
+
+	defer os.Remove(fp.Name())
+
+	_, err = fp.Write([]byte{1, 2, 3, 4})
+	check(err)
+
+	dname, err := os.MkdirTemp("", "sampledir")
+	check(err)
+	println("Temp dir name:", dname)
+
+	defer os.RemoveAll(dname)
+
+	fname := filepath.Join(dname, "file1")
+	err = os.WriteFile(fname, []byte{1, 2}, 0666)
+	check(err)
+}
