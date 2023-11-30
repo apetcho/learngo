@@ -54,4 +54,5 @@ func main() {
 	level3.WaitGroups()
 	level3.RateLimiting()
 	level3.AtomicCounters()
+	level3.Mutexes()
 }
