@@ -6,7 +6,8 @@ import (
 	//"learngo/learngo/functions"
 	//"learngo/learngo/level2"
 	//"learngo/learngo/level3"
-	"learngo/learngo/level4"
+	//"learngo/learngo/level4"
+	"learngo/learngo/level5"
 )
 
 func main() {
@@ -58,20 +59,22 @@ func main() {
 	// level3.Mutexes()
 	// level3.StatefuleGoroutines()
 
-	level4.Sorting()
-	level4.SortingByFunctions()
-	//level4.Panics()
-	level4.GoDefer()
-	level4.Recover()
-	level4.StringFunctions()
-	level4.StringFormatting()
-	level4.TextTemplates()
-	level4.RegularExpressions()
-	level4.GoJson()
-	level4.GoXml()
-	level4.GoTime()
-	level4.GoEpoch()
-	level4.TimeFormatting()
-	level4.RandomNumbers()
-	level4.NumberParsing()
+	// level4.Sorting()
+	// level4.SortingByFunctions()
+	// //level4.Panics()
+	// level4.GoDefer()
+	// level4.Recover()
+	// level4.StringFunctions()
+	// level4.StringFormatting()
+	// level4.TextTemplates()
+	// level4.RegularExpressions()
+	// level4.GoJson()
+	// level4.GoXml()
+	// level4.GoTime()
+	// level4.GoEpoch()
+	// level4.TimeFormatting()
+	// level4.RandomNumbers()
+	// level4.NumberParsing()
+
+	level5.URLParsing()
 }
