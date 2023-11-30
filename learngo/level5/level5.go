@@ -17,6 +17,7 @@ import (
 	"net/url"
 	"os"
 	"os/exec"
+	"os/signal"
 	"path/filepath"
 	str "strings"
 	"syscall"
@@ -588,7 +589,7 @@ func SpawningProcesses() {
 // -*---------------------------*-
 // -*- (21) ExecutingProcesses -*-
 // -*---------------------------*-
-func ExecutingProcesses(){
+func ExecutingProcesses() {
 	header("(21) Exec'ing Processes")
 	binary, lookErr := exec.LookPath("ls")
 	if lookErr != nil {
@@ -600,4 +601,25 @@ func ExecutingProcesses(){
 	if execErr != nil {
 		panic(execErr)
 	}
+}
+
+// -*------------------*-
+// -*- (22) GoSignals -*-
+// -*------------------*-
+func GoSignals() {
+	header("(22) Signals")
+	sigs := make(chan os.Signal, 1)
+	signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
+	done := make(chan bool, 1)
+
+	go func() {
+		sig := <-sigs
+		println()
+		println(sig)
+		done <- true
+	}()
+
+	println("awaiting signal")
+	<-done
+	println("exiting")
 }
