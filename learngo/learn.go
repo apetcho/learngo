@@ -85,4 +85,5 @@ func main() {
 	level5.FilePaths()
 	level5.GoDirectories()
 	level5.TemporaryFilesAndDirectories()
+	level5.EmbedDirective()
 }

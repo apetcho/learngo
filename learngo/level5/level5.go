@@ -3,6 +3,7 @@ package level5
 import (
 	"bufio"
 	"crypto/sha256"
+	"embed"
 	b64 "encoding/base64"
 	"fmt"
 	"io"
@@ -16,7 +17,8 @@ import (
 
 // -*-
 var println = fmt.Println
-var print = fmt.Print
+
+// var print = fmt.Print
 var printf = fmt.Printf
 
 // -*- header(text) -*-
@@ -321,4 +323,30 @@ func TemporaryFilesAndDirectories() {
 	fname := filepath.Join(dname, "file1")
 	err = os.WriteFile(fname, []byte{1, 2}, 0666)
 	check(err)
+}
+
+// -*-----------------------*-
+// -*- (10) EmbedDirective -*-
+// -*-----------------------*-
+
+//go:embed folder/single_file.txt
+var fileString string
+
+//go:embed folder/single_file.txt
+var fileByte []byte
+
+//go:embed folder/single_file.txt
+//go:ember folder/*.hash
+var folder embed.FS
+
+func EmbedDirective() {
+	header("(10) Embed Directive")
+	print(fileString)
+	print(string(fileByte))
+
+	content1, _ := folder.ReadFile("folder/file1.hash")
+	print(string(content1))
+
+	content2, _ := folder.ReadFile("folder/file2.hash")
+	print(string(content2))
 }
