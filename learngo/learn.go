@@ -90,6 +90,7 @@ func main() {
 	// level5.CommandLineFlags()
 	// level5.CommandLineSubcommands()
 	// level5.EnvironmentVariables()
-	level5.GoLogging()
-	level5.HTTPClient()
+	// level5.GoLogging()
+	// level5.HTTPClient()
+	level5.HTTPServer()
 }
