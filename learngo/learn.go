@@ -72,4 +72,5 @@ func main() {
 	level4.GoTime()
 	level4.GoEpoch()
 	level4.TimeFormatting()
+	level4.RandomNumbers()
 }
