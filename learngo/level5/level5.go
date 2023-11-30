@@ -9,6 +9,7 @@ import (
 	"net"
 	"net/url"
 	"os"
+	"path/filepath"
 	str "strings"
 )
 
@@ -190,4 +191,40 @@ func LineFilters() {
 		fmt.Fprintln(os.Stderr, "error:", err)
 		os.Exit(1)
 	}
+}
+
+// -*------------------*-
+// -*- (07) FilePaths -*-
+// -*------------------*-
+func FilePaths() {
+	header("(07) File Paths")
+	p := filepath.Join("dir1", "dir2", "filename")
+	println("p:", p)
+
+	println(filepath.Join("dir1//", "filename"))
+	println(filepath.Join("dir1/../dir1", "filename"))
+
+	println("Dir(p):", filepath.Dir(p))
+	println("Base(p):", filepath.Base(p))
+
+	println(filepath.IsAbs("dir/file"))
+	println(filepath.IsAbs("/dir/file"))
+
+	filename := "config.json"
+
+	ext := filepath.Ext(filename)
+	println(ext)
+	println(str.TrimSuffix(filename, ext))
+
+	rel, err := filepath.Rel("a/b", "a/b/t/file")
+	if err != nil {
+		panic(err)
+	}
+	println(rel)
+
+	rel, err = filepath.Rel("a/b", "a/c/t/file")
+	if err != nil {
+		panic(err)
+	}
+	println(rel)
 }
