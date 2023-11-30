@@ -421,3 +421,18 @@ func CommandLineSubcommands() {
 		os.Exit(1)
 	}
 }
+
+// -*-----------------------------*-
+// -*- (15) EnvironmentVariables -*-
+// -*-----------------------------*-
+func EnvironmentVariables() {
+	header("(15) Environment Variables")
+	os.Setenv("FOO", "1")
+	println("FOO:", os.Getenv("FOO"))
+	println("BAR:", os.Getenv("BAR"))
+	println()
+	for _, err := range os.Environ() {
+		pair := str.SplitN(err, "=", 2)
+		println(pair[0])
+	}
+}

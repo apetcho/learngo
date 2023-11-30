@@ -88,5 +88,6 @@ func main() {
 	level5.EmbedDirective()
 	//level5.CommandLineArgs()
 	// level5.CommandLineFlags()
-	level5.CommandLineSubcommands()
+	// level5.CommandLineSubcommands()
+	level5.EnvironmentVariables()
 }
