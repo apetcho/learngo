@@ -623,3 +623,11 @@ func GoSignals() {
 	<-done
 	println("exiting")
 }
+
+// -*---------------*-
+// -*- (23) GoExit -*-
+// -*---------------*-
+func GoExit() {
+	defer println("!")
+	os.Exit(3)
+}

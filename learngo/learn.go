@@ -96,5 +96,6 @@ func main() {
 	// level5.GoContext()
 	// level5.SpawningProcesses()
 	// level5.ExecutingProcesses()
-	level5.GoSignals()
+	// level5.GoSignals()
+	level5.GoExit()
 }
