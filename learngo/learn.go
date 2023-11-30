@@ -59,4 +59,5 @@ func main() {
 	// level3.StatefuleGoroutines()
 
 	level4.Sorting()
+	level4.SortingByFunctions()
 }
