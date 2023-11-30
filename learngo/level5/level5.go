@@ -16,6 +16,7 @@ import (
 	"net/http"
 	"net/url"
 	"os"
+	"os/exec"
 	"path/filepath"
 	str "strings"
 	"time"
@@ -535,4 +536,50 @@ func GoContext() {
 	header("(19) Context")
 	http.HandleFunc("/myhello", myhello)
 	http.ListenAndServe(":8090", nil)
+}
+
+// -*--------------------------*-
+// -*- (20) SpawningProcesses -*-
+// -*--------------------------*-
+func SpawningProcesses() {
+	header("(20) Spawning Processes")
+	dateCmd := exec.Command("date")
+	dateOut, err := dateCmd.Output()
+	if err != nil {
+		panic(err)
+	}
+	println("> date")
+	println(string(dateOut))
+
+	_, err = exec.Command("date", "-x").Output()
+	if err != nil {
+		switch e := err.(type) {
+		case *exec.Error:
+			println("failed executing:", err)
+		case *exec.ExitError:
+			println("command exit rc =", e.ExitCode())
+		default:
+			panic(err)
+		}
+	}
+
+	grepCmd := exec.Command("grep", "hello")
+	grepIn, _ := grepCmd.StdinPipe()
+	grepOut, _ := grepCmd.StdoutPipe()
+	grepCmd.Start()
+	grepIn.Write([]byte("hello grep\ngoodbye grep"))
+	grepIn.Close()
+	grepBytes, _ := io.ReadAll(grepOut)
+	grepCmd.Wait()
+
+	println("> grep hello")
+	println(string(grepBytes))
+
+	lsCmd := exec.Command("bash", "-c", "ls -a -l -h")
+	lsOut, err := lsCmd.Output()
+	if err != nil {
+		panic(err)
+	}
+	println("> ls -a -l -h")
+	println(string(lsOut))
 }
