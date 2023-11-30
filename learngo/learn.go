@@ -77,4 +77,5 @@ func main() {
 	// level4.NumberParsing()
 
 	level5.URLParsing()
+	level5.SHA256Hashes()
 }

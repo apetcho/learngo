@@ -1,6 +1,7 @@
 package level5
 
 import (
+	"crypto/sha256"
 	"fmt"
 	"net"
 	"net/url"
@@ -48,4 +49,17 @@ func URLParsing() {
 	m, _ := url.ParseQuery(u.RawQuery)
 	println(m)
 	println(m["k"][0])
+}
+
+// -*---------------------*-
+// -*- (02) SHA256Hashes -*-
+// -*---------------------*-
+func SHA256Hashes() {
+	header("(02) SHA256 Hashes")
+	text := "sha256 this string"
+	h := sha256.New()
+	h.Write([]byte(text))
+	bs := h.Sum(nil)
+	println(text)
+	fmt.Printf("%x\n", bs)
 }
