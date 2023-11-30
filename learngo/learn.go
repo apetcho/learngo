@@ -45,4 +45,5 @@ func main() {
 	level3.ChannelDirections()
 	level3.Select()
 	level3.Timeouts()
+	level3.NonBlockingChannel()
 }
