@@ -40,3 +40,19 @@ func Channels() {
 	msg := <-messages
 	fmt.Println(msg)
 }
+
+// -*--------------------*-
+// -*- ChannelBuffering -*-
+// -*--------------------*-
+func ChannelBuffering() {
+	fmt.Println()
+	fmt.Println("-*----------------------*-")
+	fmt.Println("-*- Channels buffering -*-")
+	fmt.Println("-*----------------------*-")
+	messages := make(chan string, 2)
+	messages <- "buffered"
+	messages <- "channel"
+
+	fmt.Println(<-messages)
+	fmt.Println(<-messages)
+}
