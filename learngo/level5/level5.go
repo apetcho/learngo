@@ -5,6 +5,7 @@ import (
 	"crypto/sha256"
 	"embed"
 	b64 "encoding/base64"
+	"flag"
 	"fmt"
 	"io"
 	"io/fs"
@@ -364,4 +365,24 @@ func CommandLineArgs() {
 	println(argsWithProg)
 	println(argsWithoutProg)
 	println(arg)
+}
+
+// -*---------------------------*-
+// -*- (13) CommandLineFlags() -*-
+// -*---------------------------*-
+func CommandLineFlags() {
+	header("(13) Command-Line Flags")
+	wordPtr := flag.String("word", "foo", "a string")
+	numPtr := flag.Int("numb", 42, "an int")
+	forkPtr := flag.Bool("fork", false, "a bool")
+
+	var svar string
+	flag.StringVar(&svar, "svar", "bar", "a string var")
+	flag.Parse()
+
+	println("word:", *wordPtr)
+	println("numb:", *numPtr)
+	println("fork:", *forkPtr)
+	println("svar:", svar)
+	println("tail:", flag.Args())
 }
