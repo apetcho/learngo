@@ -55,4 +55,5 @@ func main() {
 	level3.RateLimiting()
 	level3.AtomicCounters()
 	level3.Mutexes()
+	level3.StatefuleGoroutines()
 }
