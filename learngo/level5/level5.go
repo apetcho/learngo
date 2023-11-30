@@ -18,6 +18,7 @@ import (
 	"os"
 	"path/filepath"
 	str "strings"
+	"time"
 )
 
 // -*-
@@ -505,7 +506,33 @@ func headers(w http.ResponseWriter, req *http.Request) {
 }
 
 func HTTPServer() {
+	header("(18) HTTP Server")
 	http.HandleFunc("/hello", hello)
 	http.HandleFunc("/headers", headers)
+	http.ListenAndServe(":8090", nil)
+}
+
+// -*------------------*-
+// -*- (19) GoContext -*-
+// -*------------------*-
+func myhello(w http.ResponseWriter, req *http.Request) {
+	ctx := req.Context()
+	println("server: hello handler started")
+	defer println("server: hello handler ended")
+
+	select {
+	case <-time.After(10 * time.Second):
+		fmt.Fprintf(w, "hello\n")
+	case <-ctx.Done():
+		err := ctx.Err()
+		println("server:", err)
+		internalErr := http.StatusInternalServerError
+		http.Error(w, err.Error(), internalErr)
+	}
+}
+
+func GoContext() {
+	header("(19) Context")
+	http.HandleFunc("/myhello", myhello)
 	http.ListenAndServe(":8090", nil)
 }
