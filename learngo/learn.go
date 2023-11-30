@@ -53,4 +53,5 @@ func main() {
 	level3.WorkerPools()
 	level3.WaitGroups()
 	level3.RateLimiting()
+	level3.AtomicCounters()
 }
