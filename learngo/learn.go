@@ -62,4 +62,5 @@ func main() {
 	level4.SortingByFunctions()
 	//level4.Panics()
 	level4.GoDefer()
+	level4.Recover()
 }

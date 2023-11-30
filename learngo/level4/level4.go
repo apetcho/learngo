@@ -114,3 +114,26 @@ func GoDefer() {
 	defer closeFile(fp)
 	writeFile(fp)
 }
+
+// -*----------------*-
+// -*- (05) Recover -*-
+// -*----------------*-
+func mayPanic() {
+	panic("a problem")
+}
+
+func Recover() {
+	fmt.Println()
+	fmt.Println("-*----------------*-")
+	fmt.Println("-*- (05) Recover -*-")
+	fmt.Println("-*----------------*-")
+
+	defer func() {
+		if r := recover(); r != nil {
+			fmt.Println("Recovered. Error:\n", r)
+		}
+	}()
+
+	mayPanic()
+	fmt.Println("After mayPanic()")
+}
