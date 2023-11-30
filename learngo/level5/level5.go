@@ -136,3 +136,41 @@ func ReadingFiles() {
 	printf("5 bytes: %s\n", string(b4))
 	fp.Close()
 }
+
+// -*---------------------*-
+// -*- (05) WritingFiles -*-
+// -*---------------------*-
+func WritingFiles() {
+	header("(05) Writing Files")
+
+	check := func(err error) {
+		if err != nil {
+			panic(err)
+		}
+	}
+
+	// -
+	d1 := []byte("hello\ngo\n")
+	err := os.WriteFile("/tmp/data1", d1, 0644)
+	check(err)
+
+	fp, err := os.Create("/tmp/data2")
+	check(err)
+	defer fp.Close()
+
+	d2 := []byte{115, 111, 109, 101, 10}
+	n2, err := fp.Write(d2)
+	check(err)
+	printf("wrote %d bytes\n", n2)
+
+	n3, err := fp.WriteString("writes\n")
+	check(err)
+	printf("wrote %d bytes\n", n3)
+	fp.Sync()
+
+	w := bufio.NewWriter(fp)
+	n4, err := w.WriteString("buffered\n")
+	check(err)
+	printf("wrote %d bytes\n", n4)
+	w.Flush()
+}

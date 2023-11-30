@@ -80,4 +80,5 @@ func main() {
 	level5.SHA256Hashes()
 	level5.Bas64Encoding()
 	level5.ReadingFiles()
+	level5.WritingFiles()
 }
