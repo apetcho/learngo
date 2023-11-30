@@ -2,6 +2,7 @@ package level5
 
 import (
 	"crypto/sha256"
+	b64 "encoding/base64"
 	"fmt"
 	"net"
 	"net/url"
@@ -62,4 +63,24 @@ func SHA256Hashes() {
 	bs := h.Sum(nil)
 	println(text)
 	fmt.Printf("%x\n", bs)
+}
+
+// -*----------------------*-
+// -*- (03) Bas64Encoding -*-
+// -*----------------------*-
+func Bas64Encoding() {
+	header("(03) Base64 Encoding")
+	data := "abc123!?$*()'-=@~"
+
+	sEnc := b64.StdEncoding.EncodeToString([]byte(data))
+	println(sEnc)
+
+	sDec, _ := b64.StdEncoding.DecodeString(sEnc)
+	println(string(sDec))
+	println()
+
+	uEnc := b64.URLEncoding.EncodeToString([]byte(data))
+	println(uEnc)
+	uDec, _ := b64.URLEncoding.DecodeString(uEnc)
+	println(string(uDec))
 }

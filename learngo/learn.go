@@ -78,4 +78,5 @@ func main() {
 
 	level5.URLParsing()
 	level5.SHA256Hashes()
+	level5.Bas64Encoding()
 }
