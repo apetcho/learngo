@@ -41,4 +41,5 @@ func main() {
 	level3.GoRoutine()
 	level3.Channels()
 	level3.ChannelBuffering()
+	level3.ChannelSynchronization()
 }

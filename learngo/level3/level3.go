@@ -56,3 +56,24 @@ func ChannelBuffering() {
 	fmt.Println(<-messages)
 	fmt.Println(<-messages)
 }
+
+// -*--------------------------*-
+// -*- ChannelSynchronization -*-
+// -*--------------------------*-
+func worker(done chan bool){
+	fmt.Print("working...")
+	time.Sleep(time.Second)
+	fmt.Println("done")
+	done <- true
+}
+
+func ChannelSynchronization(){
+	fmt.Println()
+	fmt.Println("-*---------------------------*-")
+	fmt.Println("-*- Channels synchonization -*-")
+	fmt.Println("-*---------------------------*-")
+
+	done := make(chan bool, 1)
+	go worker(done)
+	<- done
+}
