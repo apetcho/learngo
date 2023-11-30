@@ -424,3 +424,17 @@ func GoTime() {
 	println(then.Add(diff))
 	println(then.Add(-diff))
 }
+
+// -*----------------*-
+// -*- (13) GoEpoch -*-
+// -*----------------*-
+func GoEpoch(){
+	header("(13) Epoch")
+	now := time.Now()
+	println(now)
+	println(now.Unix())
+	println(now.UnixMilli())
+	println(now.UnixNano())
+	println(time.Unix(now.Unix(), 0))
+	println(time.Unix(0, now.UnixNano()))
+}
