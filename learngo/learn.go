@@ -44,4 +44,5 @@ func main() {
 	level3.ChannelSynchronization()
 	level3.ChannelDirections()
 	level3.Select()
+	level3.Timeouts()
 }
