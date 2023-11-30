@@ -174,3 +174,20 @@ func WritingFiles() {
 	printf("wrote %d bytes\n", n4)
 	w.Flush()
 }
+
+// -*---------------------*-
+// -*- (06) Line Filters -*-
+// -*---------------------*-
+func LineFilters() {
+	header("(06) Line Filters")
+	scanner := bufio.NewScanner(os.Stdin)
+	for scanner.Scan() {
+		ucl := str.ToUpper(scanner.Text())
+		println(ucl)
+	}
+
+	if err := scanner.Err(); err != nil {
+		fmt.Fprintln(os.Stderr, "error:", err)
+		os.Exit(1)
+	}
+}
