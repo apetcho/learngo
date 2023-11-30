@@ -386,3 +386,38 @@ func CommandLineFlags() {
 	println("svar:", svar)
 	println("tail:", flag.Args())
 }
+
+// -*-------------------------------*-
+// -*- (14) CommandLineSubcommands -*-
+// -*-------------------------------*-
+func CommandLineSubcommands() {
+	header("(14) Command-Line Subcommands")
+	fooCmd := flag.NewFlagSet("foo", flag.ExitOnError)
+	fooEnable := fooCmd.Bool("enable", false, "enable")
+	fooName := fooCmd.String("name", "", "name")
+
+	barCmd := flag.NewFlagSet("bar", flag.ExitOnError)
+	barLevel := barCmd.Int("level", 0, "level")
+
+	if len(os.Args) < 2 {
+		println("expected 'foo' or 'bar' subcommands")
+		os.Exit(1)
+	}
+
+	switch os.Args[1] {
+	case "foo":
+		fooCmd.Parse(os.Args[2:])
+		println("subcommand 'foo'")
+		println("  enable:", *fooEnable)
+		println("  name:", *fooName)
+		println("  tail:", fooCmd.Args())
+	case "bar":
+		barCmd.Parse(os.Args[2:])
+		println("subcommand 'bar'")
+		println("  level:", *barLevel)
+		println("  tail:", barCmd.Args())
+	default:
+		println("expected 'foo' or 'bar' subcommands")
+		os.Exit(1)
+	}
+}
