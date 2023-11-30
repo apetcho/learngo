@@ -42,4 +42,5 @@ func main() {
 	level3.Channels()
 	level3.ChannelBuffering()
 	level3.ChannelSynchronization()
+	level3.ChannelDirections()
 }

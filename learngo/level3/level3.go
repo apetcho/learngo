@@ -60,14 +60,14 @@ func ChannelBuffering() {
 // -*--------------------------*-
 // -*- ChannelSynchronization -*-
 // -*--------------------------*-
-func worker(done chan bool){
+func worker(done chan bool) {
 	fmt.Print("working...")
 	time.Sleep(time.Second)
 	fmt.Println("done")
 	done <- true
 }
 
-func ChannelSynchronization(){
+func ChannelSynchronization() {
 	fmt.Println()
 	fmt.Println("-*---------------------------*-")
 	fmt.Println("-*- Channels synchonization -*-")
@@ -75,5 +75,29 @@ func ChannelSynchronization(){
 
 	done := make(chan bool, 1)
 	go worker(done)
-	<- done
+	<-done
+}
+
+// -*---------------------*-
+// -*- ChannelDirections -*-
+// -*---------------------*-
+func ping(pings chan<- string, msg string) {
+	pings <- msg
+}
+
+func pong(pings <-chan string, pongs chan<- string) {
+	msg := <-pings
+	pongs <- msg
+}
+
+func ChannelDirections() {
+	fmt.Println()
+	fmt.Println("-*-----------------------*-")
+	fmt.Println("-*- Channels Directions -*-")
+	fmt.Println("-*-----------------------*-")
+	pings := make(chan string, 1)
+	pongs := make(chan string, 1)
+	ping(pings, "passed message")
+	pong(pings, pongs)
+	fmt.Println(<-pongs)
 }
