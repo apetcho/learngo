@@ -51,4 +51,5 @@ func main() {
 	level3.Timers()
 	level3.Tickers()
 	level3.WorkerPools()
+	level3.WaitGroups()
 }

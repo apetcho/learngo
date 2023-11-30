@@ -2,6 +2,7 @@ package level3
 
 import (
 	"fmt"
+	"sync"
 	"time"
 )
 
@@ -343,4 +344,30 @@ func WorkerPools() {
 	for a := 1; a <= numJobs; a++ {
 		fmt.Println("result =", <-results)
 	}
+}
+
+// -*--------------*-
+// -*- WaitGroups -*-
+// -*--------------*-
+func waitGroupWorker(id int) {
+	fmt.Printf("Worker %d starting\n", id)
+	time.Sleep(time.Second)
+	fmt.Printf("Worker %d done\n", id)
+}
+
+func WaitGroups() {
+	fmt.Println()
+	fmt.Println("-*--------------*-")
+	fmt.Println("-*- WaitGroups -*-")
+	fmt.Println("-*--------------*-")
+	var wg sync.WaitGroup
+	for i := 1; i <= 5; i++ {
+		wg.Add(1)
+		i := i
+		go func() {
+			defer wg.Done()
+			waitGroupWorker(i)
+		}()
+	}
+	wg.Wait()
 }
