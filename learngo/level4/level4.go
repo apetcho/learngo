@@ -10,6 +10,7 @@ import (
 	"os"
 	"regexp"
 	"slices"
+	"strconv"
 	"text/template"
 	"time"
 
@@ -471,7 +472,7 @@ func TimeFormatting() {
 // -*----------------------*-
 // -*- (15) RandomNumbers -*-
 // -*----------------------*-
-func RandomNumbers(){
+func RandomNumbers() {
 	header("(15) Random Numbers")
 	fmt.Print(rand.Intn(100), ",")
 	fmt.Print(rand.Intn(100))
@@ -479,7 +480,7 @@ func RandomNumbers(){
 
 	println(rand.Float64())
 	fmt.Print((rand.Float64()*5)+5, ",")
-	fmt.Print((rand.Float64()*5)+5)
+	fmt.Print((rand.Float64() * 5) + 5)
 	println()
 
 	s1 := rand.NewSource(time.Now().UnixNano())
@@ -499,4 +500,28 @@ func RandomNumbers(){
 	r3 := rand.New(s3)
 	fmt.Print(r3.Intn(100), ",")
 	println(r3.Intn(100))
+}
+
+// -*----------------------*-
+// -*- (16) NumberParsing -*-
+// -*----------------------*-
+func NumberParsing() {
+	header("(16) Number Parsing")
+	f, _ := strconv.ParseFloat("1.234", 64)
+	println(f)
+
+	i, _ := strconv.ParseInt("123", 0, 64)
+	println(i)
+
+	d, _ := strconv.ParseInt("0x1c8", 0, 64)
+	println(d)
+
+	u, _ := strconv.ParseUint("789", 0, 64)
+	println(u)
+
+	k, _ := strconv.Atoi("135")
+	println(k)
+
+	_, e := strconv.Atoi("wat")
+	println(e)
 }
