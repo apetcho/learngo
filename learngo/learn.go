@@ -5,7 +5,8 @@ import (
 	//"learngo/learngo/containers"
 	//"learngo/learngo/functions"
 	//"learngo/learngo/level2"
-	"learngo/learngo/level3"
+	//"learngo/learngo/level3"
+	"learngo/learngo/level4"
 )
 
 func main() {
@@ -38,22 +39,24 @@ func main() {
 	// level2.ErrorHandling()
 
 	// -
-	level3.GoRoutine()
-	level3.Channels()
-	level3.ChannelBuffering()
-	level3.ChannelSynchronization()
-	level3.ChannelDirections()
-	level3.Select()
-	level3.Timeouts()
-	level3.NonBlockingChannel()
-	level3.ClosingChannels()
-	level3.ChannelIterator()
-	level3.Timers()
-	level3.Tickers()
-	level3.WorkerPools()
-	level3.WaitGroups()
-	level3.RateLimiting()
-	level3.AtomicCounters()
-	level3.Mutexes()
-	level3.StatefuleGoroutines()
+	// level3.GoRoutine()
+	// level3.Channels()
+	// level3.ChannelBuffering()
+	// level3.ChannelSynchronization()
+	// level3.ChannelDirections()
+	// level3.Select()
+	// level3.Timeouts()
+	// level3.NonBlockingChannel()
+	// level3.ClosingChannels()
+	// level3.ChannelIterator()
+	// level3.Timers()
+	// level3.Tickers()
+	// level3.WorkerPools()
+	// level3.WaitGroups()
+	// level3.RateLimiting()
+	// level3.AtomicCounters()
+	// level3.Mutexes()
+	// level3.StatefuleGoroutines()
+
+	level4.Sorting()
 }
