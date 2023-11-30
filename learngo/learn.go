@@ -4,7 +4,8 @@ import (
 	//"learngo/learngo/basics"
 	//"learngo/learngo/containers"
 	//"learngo/learngo/functions"
-	"learngo/learngo/level2"
+	//"learngo/learngo/level2"
+	"learngo/learngo/level3"
 )
 
 func main() {
@@ -27,12 +28,15 @@ func main() {
 	// functions.Closures()
 	// functions.Recursion()
 
-	level2.Pointers()
-	level2.StringAndRune()
-	level2.Structs()
-	level2.Methods()
-	level2.Interfaces()
-	level2.StructEmbedding()
-	level2.Generics()
-	level2.ErrorHandling()
+	// level2.Pointers()
+	// level2.StringAndRune()
+	// level2.Structs()
+	// level2.Methods()
+	// level2.Interfaces()
+	// level2.StructEmbedding()
+	// level2.Generics()
+	// level2.ErrorHandling()
+
+	// -
+	level3.GoRoutine()
 }
