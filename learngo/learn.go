@@ -71,4 +71,5 @@ func main() {
 	level4.GoXml()
 	level4.GoTime()
 	level4.GoEpoch()
+	level4.TimeFormatting()
 }
