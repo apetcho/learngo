@@ -240,7 +240,7 @@ func ClosingChannels() {
 // -*-------------------*-
 // -*- ChannelIterator -*-
 // -*-------------------*-
-func ChannelIterator(){
+func ChannelIterator() {
 	fmt.Println()
 	fmt.Println("-*-----------------------*-")
 	fmt.Println("-*- Range over channels -*-")
@@ -258,7 +258,7 @@ func ChannelIterator(){
 // -*----------*-
 // -*- Timers -*-
 // -*----------*-
-func Timers(){
+func Timers() {
 	fmt.Println()
 	fmt.Println("-*----------*-")
 	fmt.Println("-*- Timers -*-")
@@ -269,7 +269,7 @@ func Timers(){
 	fmt.Println("Timer 1 fired")
 
 	timer2 := time.NewTimer(time.Second)
-	go func(){
+	go func() {
 		<-timer2.C
 		fmt.Println("Timer 2 fired")
 	}()
@@ -285,7 +285,7 @@ func Timers(){
 // -*-----------*-
 // -*- Tickers -*-
 // -*-----------*-
-func Tickers(){
+func Tickers() {
 	fmt.Println()
 	fmt.Println("-*-----------*-")
 	fmt.Println("-*- Tickers -*-")
@@ -294,7 +294,7 @@ func Tickers(){
 	ticker := time.NewTicker(500 * time.Millisecond)
 	done := make(chan bool)
 
-	go func(){
+	go func() {
 		for {
 			select {
 			case <-done:
@@ -305,8 +305,42 @@ func Tickers(){
 		}
 	}()
 
-	time.Sleep(1600*time.Millisecond)
+	time.Sleep(1600 * time.Millisecond)
 	ticker.Stop()
 	done <- true
 	fmt.Println("Ticker stopped")
+}
+
+// -*---------------*-
+// -*- WorkerPools -*-
+// -*---------------*-
+func myworker(id int, jobs <-chan int, results chan<- int) {
+	for j := range jobs {
+		fmt.Println("worker", id, "started job", j)
+		time.Sleep(time.Second)
+		fmt.Println("worker", id, "finished job", j)
+		results <- j * 2
+	}
+}
+
+func WorkerPools() {
+	fmt.Println()
+	fmt.Println("-*----------------*-")
+	fmt.Println("-*- Worker Pools -*-")
+	fmt.Println("-*----------------*-")
+	const numJobs = 5
+	jobs := make(chan int, numJobs)
+	results := make(chan int, numJobs)
+
+	for w := 1; w <= 3; w++ {
+		go myworker(w, jobs, results)
+	}
+
+	for j := 1; j <= numJobs; j++ {
+		jobs <- j
+	}
+	close(jobs)
+	for a := 1; a <= numJobs; a++ {
+		fmt.Println("result =", <-results)
+	}
 }
