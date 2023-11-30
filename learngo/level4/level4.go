@@ -3,6 +3,7 @@ package level4
 import (
 	"bytes"
 	"cmp"
+	"encoding/json"
 	"fmt"
 	"os"
 	"regexp"
@@ -271,4 +272,75 @@ func RegularExpressions() {
 	in := []byte("a peach")
 	out := re.ReplaceAllFunc(in, bytes.ToUpper)
 	println(string(out))
+}
+
+// -*---------------*-
+// -*- (10) GoJson -*-
+// -*---------------*-
+func GoJson() {
+	header("(10) JSON")
+	// -
+	type Respose1 struct {
+		Page   int
+		Fruits []string
+	}
+
+	type Respose2 struct {
+		Page   int      `json:"page"`
+		Fruits []string `json:"fruits"`
+	}
+
+	func() {
+		bolB, _ := json.Marshal(true)
+		println(string(bolB))
+		intB, _ := json.Marshal(1)
+		println(string(intB))
+		fltB, _ := json.Marshal(2.34)
+		println(string(fltB))
+		strB, _ := json.Marshal("gopher")
+		println(string(strB))
+		slcD := []string{"apple", "peach", "pear"}
+		slcB, _ := json.Marshal(slcD)
+		println(string(slcB))
+
+		mapD := map[string]int{"apple": 5, "lettuce": 7}
+		mapB, _ := json.Marshal(mapD)
+		println(string(mapB))
+
+		res1D := &Respose1{
+			Page:   1,
+			Fruits: []string{"apple", "peach", "pear"},
+		}
+		res1B, _ := json.Marshal(res1D)
+		println(string(res1B))
+
+		res2D := &Respose2{
+			Page:   1,
+			Fruits: []string{"apple", "peach", "pear"},
+		}
+		res2B, _ := json.Marshal(res2D)
+		println(string(res2B))
+
+		_byte := []byte(`{"num":6.13,"strs":["a","b"]}`)
+		var data map[string]interface{}
+		if err := json.Unmarshal(_byte, &data); err != nil {
+			panic(err)
+		}
+		println(data)
+		num := data["num"].(float64)
+		println(num)
+		strs := data["strs"].([]interface{})
+		str1 := strs[0].(string)
+		println(str1)
+
+		str := `{"page":1, "fruits": ["apple", "peach"]}`
+		res := Respose2{}
+		json.Unmarshal([]byte(str), &res)
+		println(res)
+		println(res.Fruits[0])
+
+		enc := json.NewEncoder(os.Stdout)
+		d := map[string]int{"apple": 5, "lettuce": 7}
+		enc.Encode(d)
+	}()
 }

@@ -67,4 +67,5 @@ func main() {
 	level4.StringFormatting()
 	level4.TextTemplates()
 	level4.RegularExpressions()
+	level4.GoJson()
 }
