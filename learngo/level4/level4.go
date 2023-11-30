@@ -76,3 +76,41 @@ func Panics() {
 		panic(err)
 	}
 }
+
+// -*--------------*-
+// -*- (04) GoDefer -*-
+// -*--------------*-
+func createFile(p string) *os.File {
+	fmt.Println("creating")
+	fp, err := os.Create(p)
+	if err != nil {
+		panic(err)
+	}
+	return fp
+}
+
+func writeFile(fp *os.File) {
+	fmt.Println("writing")
+	fmt.Fprintln(fp, "data")
+}
+
+func closeFile(fp *os.File) {
+	fmt.Println("closing")
+	err := fp.Close()
+
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "error: %v\n", err)
+		os.Exit(1)
+	}
+}
+
+func GoDefer() {
+	fmt.Println()
+	fmt.Println("-*--------------*-")
+	fmt.Println("-*- (04) Defer -*-")
+	fmt.Println("-*--------------*-")
+
+	fp := createFile("/tmp/defer.txt")
+	defer closeFile(fp)
+	writeFile(fp)
+}
