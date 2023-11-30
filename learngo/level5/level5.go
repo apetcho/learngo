@@ -6,6 +6,7 @@ import (
 	b64 "encoding/base64"
 	"fmt"
 	"io"
+	"io/fs"
 	"net"
 	"net/url"
 	"os"
@@ -227,4 +228,64 @@ func FilePaths() {
 		panic(err)
 	}
 	println(rel)
+}
+
+// -*----------------------*-
+// -*- (08) GoDirectories -*-
+// -*----------------------*-
+func GoDirectories() {
+	header("(08) Directories")
+	check := func(err error) {
+		if err != nil {
+			panic(err)
+		}
+	}
+
+	// -
+	err := os.Mkdir("subdir", 0755)
+	check(err)
+
+	defer os.RemoveAll("subdir")
+
+	createEmptyfile := func(name string) {
+		data := []byte("")
+		check(os.WriteFile(name, data, 0644))
+	}
+	createEmptyfile("subdir/file1")
+
+	err = os.MkdirAll("subdir/parent/child", 0755)
+	check(err)
+
+	createEmptyfile("subdir/parent/file2")
+	createEmptyfile("subdir/parent/file3")
+	createEmptyfile("subdir/parent/child/file4")
+
+	c, err := os.ReadDir("subdir/parent")
+	check(err)
+	println("Listing subdir/parent")
+	for _, entry := range c {
+		println(" ", entry.Name(), entry.IsDir())
+	}
+
+	err = os.Chdir("subdir/parent/child")
+	check(err)
+
+	println("Listing subdir/parent/child")
+	for _, entry := range c {
+		println(" ", entry.Name(), entry.IsDir())
+	}
+
+	err = os.Chdir("../../..")
+	check(err)
+
+	visit := func(path string, d fs.DirEntry, err error) error {
+		if err != nil {
+			return err
+		}
+		println(" ", path, d.IsDir())
+		return nil
+	}
+
+	println("Visiting subdir")
+	_ = filepath.WalkDir("subdir", visit)
 }

@@ -81,6 +81,7 @@ func main() {
 	level5.Bas64Encoding()
 	level5.ReadingFiles()
 	level5.WritingFiles()
-	level5.LineFilters()
+	//level5.LineFilters()
 	level5.FilePaths()
+	level5.GoDirectories()
 }
