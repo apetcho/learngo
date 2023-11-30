@@ -46,4 +46,5 @@ func main() {
 	level3.Select()
 	level3.Timeouts()
 	level3.NonBlockingChannel()
+	level3.ClosingChannels()
 }
