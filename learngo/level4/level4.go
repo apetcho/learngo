@@ -3,6 +3,7 @@ package level4
 import (
 	"cmp"
 	"fmt"
+	"os"
 	"slices"
 )
 
@@ -29,7 +30,7 @@ func Sorting() {
 // -*---------------------------*-
 // -*- (02) SortingByFunctions -*-
 // -*---------------------------*-
-func SortingByFunctions(){
+func SortingByFunctions() {
 	fmt.Println()
 	fmt.Println("-*-----------------------------*-")
 	fmt.Println("-*- (02) Sorting by functions -*-")
@@ -46,7 +47,7 @@ func SortingByFunctions(){
 
 	type Person struct {
 		name string
-		age int
+		age  int
 	}
 
 	people := []Person{
@@ -55,8 +56,23 @@ func SortingByFunctions(){
 		{name: "Alex", age: 72},
 	}
 
-	slices.SortFunc(people, func(a, b Person) int{
+	slices.SortFunc(people, func(a, b Person) int {
 		return cmp.Compare(a.age, b.age)
 	})
 	fmt.Println(people)
+}
+
+// -*---------------*-
+// -*- (03) Panics -*-
+// -*---------------*-
+func Panics() {
+	fmt.Println()
+	fmt.Println("-*---------------*-")
+	fmt.Println("-*- (03) Panics -*-")
+	fmt.Println("-*---------------*-")
+	panic("a problem")
+	_, err := os.Create("/tmp/file")
+	if err != nil {
+		panic(err)
+	}
 }
