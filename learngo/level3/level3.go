@@ -24,3 +24,19 @@ func GoRoutine() {
 	time.Sleep(time.Second)
 	fmt.Println("done")
 }
+
+// -*------------*-
+// -*- Channels -*-
+// -*------------*-
+func Channels() {
+	fmt.Println()
+	fmt.Println("-*------------*-")
+	fmt.Println("-*- Channels -*-")
+	fmt.Println("-*------------*-")
+	messages := make(chan string)
+
+	go func() { messages <- "ping" }()
+	// -
+	msg := <-messages
+	fmt.Println(msg)
+}
