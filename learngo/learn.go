@@ -65,4 +65,5 @@ func main() {
 	level4.Recover()
 	level4.StringFunctions()
 	level4.StringFormatting()
+	level4.TextTemplates()
 }
