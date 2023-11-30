@@ -13,6 +13,7 @@ import (
 	"log"
 	"log/slog"
 	"net"
+	"net/http"
 	"net/url"
 	"os"
 	"path/filepath"
@@ -465,4 +466,25 @@ func GoLogging() {
 	myslog := slog.New(jsonHandler)
 	myslog.Info("hi there")
 	myslog.Info("hello again", "key", "val", "age", 25)
+}
+
+// -*-------------------*-
+// -*- (17) HTTPClient -*-
+// -*-------------------*-
+func HTTPClient() {
+	header("(17) HTTP Client")
+	resp, err := http.Get("https://gobyexample.com")
+	if err != nil {
+		panic(err)
+	}
+	defer resp.Body.Close()
+	println("Response status:", resp.Status)
+	scanner := bufio.NewScanner(resp.Body)
+	for i := 0; scanner.Scan() && i < 10; i++ {
+		println(scanner.Text())
+	}
+
+	if err := scanner.Err(); err != nil {
+		panic(err)
+	}
 }
